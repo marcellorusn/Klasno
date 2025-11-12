@@ -25,113 +25,113 @@ const routes = [
   {
     path: '/',
     name: 'Home',
-    component: Home
+    component: Home,
   },
   {
     path: '/products',
     name: 'ProductListing',
-    component: ProductListing
+    component: ProductListing,
   },
   {
     path: '/product/:id',
     name: 'ProductDetails',
-    component: ProductDetails
+    component: ProductDetails,
   },
   {
     path: '/cart',
     name: 'Cart',
-    component: Cart
+    component: Cart,
   },
   {
     path: '/checkout',
     name: 'Checkout',
-    component: Checkout
+    component: Checkout,
   },
   {
     path: '/login',
     name: 'Login',
-    component: Login
+    component: Login,
   },
   {
     path: '/register',
     name: 'Register',
-    component: Register
+    component: Register,
   },
   {
     path: '/profile',
     name: 'Profile',
-    component: Profile
+    component: Profile,
   },
   {
     path: '/profile/edit',
     name: 'EditProfile',
-    component: EditProfile
+    component: EditProfile,
   },
   {
     path: '/orders',
     name: 'OrderHistory',
-    component: OrderHistory
+    component: OrderHistory,
   },
   {
     path: '/category/electronics',
     name: 'CategoryElectronics',
-    component: CategoryElectronics
+    component: CategoryElectronics,
   },
   {
     path: '/category/clothing',
     name: 'CategoryClothing',
-    component: CategoryClothing
+    component: CategoryClothing,
   },
   {
     path: '/category/books',
     name: 'CategoryBooks',
-    component: CategoryBooks
+    component: CategoryBooks,
   },
   {
     path: '/category/accessories',
     name: 'CategoryAccessories',
-    component: CategoryAccessories
+    component: CategoryAccessories,
   },
   {
     path: '/wishlist',
     name: 'Wishlist',
-    component: Wishlist
+    component: Wishlist,
   },
   {
     path: '/about',
     name: 'AboutUs',
-    component: AboutUs
+    component: AboutUs,
   },
   {
     path: '/contact',
     name: 'Contact',
-    component: Contact
+    component: Contact,
   },
   {
     path: '/feedback',
     name: 'Feedback',
-    component: Feedback
+    component: Feedback,
   },
   {
     path: '/recently-viewed',
     name: 'RecentlyViewed',
-    component: RecentlyViewed
+    component: RecentlyViewed,
   },
   {
     path: '/forgot-password',
     name: 'ForgotPassword',
-    component: ForgotPassword
+    component: ForgotPassword,
   },
   {
     path: '/account',
     name: 'YourAccount',
-    component: YourAccount
+    component: YourAccount,
   },
   {
     path: '/:pathMatch(.*)*',
     name: 'NotFound',
-    component: NotFound
-  }
+    component: NotFound,
+  },
 ]
 
 export default routes

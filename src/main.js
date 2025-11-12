@@ -6,7 +6,7 @@ import './assets/main.css'
 
 const router = createRouter({
   history: createWebHistory(),
-  routes
+  routes,
 })
 
 const app = createApp(App)
