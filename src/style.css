@@ -1,0 +1,10 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/*
+If Tailwind styles still don't appear after starting the dev server, try:
+- Restarting the dev server (yarn dev)
+- Clearing the browser cache or use a hard reload (Ctrl+Shift+R)
+- Verify `tailwind.config.js` content paths include your files
+*/

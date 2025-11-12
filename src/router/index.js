@@ -19,6 +19,7 @@ import Feedback from '../pages/Feedback.vue'
 import RecentlyViewed from '../pages/RecentlyViewed.vue'
 import ForgotPassword from '../pages/ForgotPassword.vue'
 import YourAccount from '../pages/YourAccount.vue'
+import ComponentShowcase from '../pages/ComponentShowcase.vue'
 import NotFound from '../pages/404.vue'
 
 const routes = [
@@ -126,6 +127,11 @@ const routes = [
     path: '/account',
     name: 'YourAccount',
     component: YourAccount,
+  },
+  {
+    path: '/components',
+    name: 'ComponentShowcase',
+    component: ComponentShowcase,
   },
   {
     path: '/:pathMatch(.*)*',
