@@ -33,6 +33,7 @@
 </template>
 
 <script setup>
+// Simple Sidebar with local reactive filters (no external logic)
 import { ref } from 'vue'
 
 const categories = ['Electronice', 'Îmbrăcăminte', 'Cărți', 'Accesorii']

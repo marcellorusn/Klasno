@@ -26,40 +26,17 @@
 </template>
 
 <script setup>
+// Simple Input component
+// - Uses native input and forwards value via v-model (update:modelValue)
 defineProps({
-  type: {
-    type: String,
-    default: 'text',
-    validator: (value) => ['text', 'email', 'password', 'number', 'tel', 'url', 'date'].includes(value)
-  },
-  placeholder: {
-    type: String,
-    default: ''
-  },
-  label: {
-    type: String,
-    default: ''
-  },
-  modelValue: {
-    type: [String, Number],
-    default: ''
-  },
-  error: {
-    type: String,
-    default: ''
-  },
-  hint: {
-    type: String,
-    default: ''
-  },
-  required: {
-    type: Boolean,
-    default: false
-  },
-  disabled: {
-    type: Boolean,
-    default: false
-  }
+  type: { type: String, default: 'text' },
+  placeholder: { type: String, default: '' },
+  label: { type: String, default: '' },
+  modelValue: { type: [String, Number], default: '' },
+  error: { type: String, default: '' },
+  hint: { type: String, default: '' },
+  required: { type: Boolean, default: false },
+  disabled: { type: Boolean, default: false }
 })
 
 defineEmits(['update:modelValue', 'blur', 'focus'])

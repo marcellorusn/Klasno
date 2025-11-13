@@ -64,6 +64,9 @@
 </template>
 
 <script setup>
+// Simple ProductDetails page
+// - Shows a single product from local data
+// - Uses local reactive `quantity` and simple handlers
 import { ref } from 'vue'
 import Button from '../components/Button.vue'
 import RatingStars from '../components/RatingStars.vue'
@@ -84,11 +87,11 @@ const reviews = ref([
   { id: 3, author: 'Andrei K.', rating: 5, text: 'Cel mai bun laptop pe care l-am avut.' }
 ])
 
-const handleAddToCart = () => {
+function handleAddToCart() {
   alert(`${quantity.value} x ${product.value.name} adăugat în coș!`)
 }
 
-const handleAddToWishlist = () => {
+function handleAddToWishlist() {
   alert(`Adăugat în Wishlist!`)
 }
 </script>

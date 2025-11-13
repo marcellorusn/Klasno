@@ -15,18 +15,13 @@
 </template>
 
 <script setup>
+// Simple Button wrapper
+// Props: variant (style), disabled
+// Emits: native 'click' event
 defineProps({
-  variant: {
-    type: String,
-    default: 'primary',
-    validator: (value) => ['primary', 'secondary', 'danger'].includes(value)
-  },
-  disabled: {
-    type: Boolean,
-    default: false
-  }
+  variant: { type: String, default: 'primary' },
+  disabled: { type: Boolean, default: false }
 })
-
 defineEmits(['click'])
 </script>
 

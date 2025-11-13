@@ -40,6 +40,8 @@
 </template>
 
 <script setup>
+// Footer is static for this simplified project.
+// It only contains links using `router-link`.
 </script>
 
 <style scoped>

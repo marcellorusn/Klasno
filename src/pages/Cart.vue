@@ -60,6 +60,8 @@
 </template>
 
 <script setup>
+// Simple Cart page with local cart items
+// - Uses `ref` for list and `computed` for totals
 import { ref, computed } from 'vue'
 
 const cartItems = ref([
@@ -69,29 +71,21 @@ const cartItems = ref([
 
 const shipping = 50
 
-const subtotal = computed(() => {
-  return cartItems.value.reduce((sum, item) => sum + (item.price * item.quantity), 0)
-})
+const subtotal = computed(() => cartItems.value.reduce((sum, item) => sum + item.price * item.quantity, 0))
+const tax = computed(() => Math.round(subtotal.value * 0.19))
+const total = computed(() => subtotal.value + shipping + tax.value)
 
-const tax = computed(() => {
-  return Math.round(subtotal.value * 0.19)
-})
-
-const total = computed(() => {
-  return subtotal.value + shipping + tax.value
-})
-
-const incrementQuantity = (id) => {
-  const item = cartItems.value.find(item => item.id === id)
+function incrementQuantity(id) {
+  const item = cartItems.value.find(i => i.id === id)
   if (item) item.quantity++
 }
 
-const decrementQuantity = (id) => {
-  const item = cartItems.value.find(item => item.id === id)
+function decrementQuantity(id) {
+  const item = cartItems.value.find(i => i.id === id)
   if (item && item.quantity > 1) item.quantity--
 }
 
-const removeItem = (id) => {
+function removeItem(id) {
   cartItems.value = cartItems.value.filter(item => item.id !== id)
 }
 </script>

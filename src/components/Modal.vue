@@ -41,26 +41,17 @@
 </template>
 
 <script setup>
+// Simple Modal component
 import Button from './Button.vue'
 
-defineProps({
-  show: {
-    type: Boolean,
-    required: true
-  },
-  title: {
-    type: String,
-    default: 'Dialog'
-  }
-})
-
+const props = defineProps({ show: { type: Boolean, required: true }, title: { type: String, default: 'Dialog' } })
 const emit = defineEmits(['close', 'confirm'])
 
-const close = () => {
+function close() {
   emit('close')
 }
 
-const confirm = () => {
+function confirm() {
   emit('confirm')
 }
 </script>

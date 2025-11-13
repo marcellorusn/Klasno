@@ -47,48 +47,42 @@
 </template>
 
 <script setup>
+// Simple CartItem component script
+// - Shows product details inside the cart
+// - Receives props from the parent: id, productName, price, quantity, image
+// - Emits 'remove-item' when the remove button is clicked
+// - Emits 'update:quantity' whenever the quantity changes
 import { ref } from 'vue'
 
 const props = defineProps({
-  id: {
-    type: [String, Number],
-    required: true
-  },
-  productName: {
-    type: String,
-    required: true
-  },
-  price: {
-    type: Number,
-    required: true
-  },
-  quantity: {
-    type: Number,
-    default: 1
-  },
-  image: {
-    type: String,
-    default: ''
-  }
+  id: [String, Number],
+  productName: { type: String, required: true },
+  price: { type: Number, required: true },
+  quantity: { type: Number, default: 1 },
+  image: { type: String, default: '' }
 })
 
+// defineEmits declares events this child can send to its parent
 const emit = defineEmits(['remove-item', 'update:quantity'])
 
-const currentQuantity = ref(props.quantity)
+// Use a local ref for the editable quantity so we can modify it here
+// and notify the parent with the 'update:quantity' event.
+const qty = ref(props.quantity)
 
-const incrementQuantity = () => {
-  currentQuantity.value++
-  emit('update:quantity', currentQuantity.value)
+function incrementQuantity() {
+  qty.value++
+  emit('update:quantity', qty.value)
 }
 
-const decrementQuantity = () => {
-  if (currentQuantity.value > 1) {
-    currentQuantity.value--
-    emit('update:quantity', currentQuantity.value)
+function decrementQuantity() {
+  if (qty.value > 1) {
+    qty.value--
+    emit('update:quantity', qty.value)
   }
 }
 
-const removeItem = () => {
+function removeItem() {
+  // Tell the parent which item to remove
   emit('remove-item', props.id)
 }
 </script>

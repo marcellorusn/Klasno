@@ -14,14 +14,14 @@
 </template>
 
 <script setup>
+// Simple SearchBar: emits 'search' with the current query
 import { ref } from 'vue'
 import Button from './Button.vue'
 
 const searchQuery = ref('')
-
 const emit = defineEmits(['search'])
 
-const handleSearch = () => {
+function handleSearch() {
   emit('search', searchQuery.value)
 }
 </script>

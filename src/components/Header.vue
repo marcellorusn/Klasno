@@ -41,13 +41,15 @@
 </template>
 
 <script setup>
+// Simple header showing navigation and a fake cart count
 import { ref } from 'vue'
 import useAuth from '../stores/auth'
 
 const cartCount = ref(3)
 const auth = useAuth()
 
-const handleLogout = () => {
+function handleLogout() {
+  // call the simple auth store logout
   auth.logout()
 }
 </script>

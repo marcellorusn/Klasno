@@ -18,7 +18,11 @@
         <ProductCard 
           v-for="product in products" 
           :key="product.id"
-          :product="product"
+          :id="product.id"
+          :title="product.name"
+          :description="product.description"
+          :price="product.price"
+          :rating="product.rating"
           @add-to-cart="handleAddToCart"
         />
       </div>

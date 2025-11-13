@@ -44,7 +44,9 @@
 </template>
 
 <script setup>
-import { ref, computed } from 'vue'
+// Simple Navbar component
+// - Keeps a small mobile menu state
+import { ref } from 'vue'
 import { useRoute } from 'vue-router'
 
 const route = useRoute()
@@ -61,11 +63,11 @@ const navItems = [
 
 const emit = defineEmits(['toggle-menu'])
 
-const isActive = (path) => {
+function isActive(path) {
   return route.path === path
 }
 
-const toggleMenu = () => {
+function toggleMenu() {
   menuOpen.value = !menuOpen.value
   emit('toggle-menu', menuOpen.value)
 }
