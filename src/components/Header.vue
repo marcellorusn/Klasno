@@ -5,16 +5,16 @@
         Klasno
       </router-link>
       <nav class="flex gap-4 items-center">
-        <!-- Navigare -->
+        
         <router-link to="/" class="hover:text-blue-100 transition">Acasă</router-link>
         <router-link to="/products" class="hover:text-blue-100 transition">Produse</router-link>
         <router-link to="/about" class="hover:text-blue-100 transition">Despre</router-link>
         <router-link to="/contact" class="hover:text-blue-100 transition">Contact</router-link>
 
-        <!-- Spacer -->
+        
         <div class="flex-1"></div>
 
-        <!-- Cart -->
+      
         <router-link 
           to="/cart" 
           class="hover:text-blue-100 transition relative"
@@ -25,7 +25,7 @@
           </span>
         </router-link>
 
-        <!-- Cont (Auth) -->
+        
         <div v-if="auth.state.loggedIn" class="flex items-center gap-3">
           <router-link to="/profile" class="hover:text-blue-100 transition">Profil</router-link>
           <router-link to="/orders" class="hover:text-blue-100 transition">Comenzi</router-link>
@@ -41,7 +41,7 @@
 </template>
 
 <script setup>
-// Simple header showing navigation and a fake cart count
+
 import { ref } from 'vue'
 import useAuth from '../stores/auth'
 
@@ -49,7 +49,7 @@ const cartCount = ref(3)
 const auth = useAuth()
 
 function handleLogout() {
-  // call the simple auth store logout
+  
   auth.logout()
 }
 </script>

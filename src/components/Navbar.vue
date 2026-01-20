@@ -2,7 +2,7 @@
   <nav class="bg-gray-100 border-b border-gray-200 sticky top-0 z-40">
     <div class="container mx-auto px-4">
       <div class="flex justify-between items-center py-3">
-        <!-- Desktop Navigation -->
+        
         <div class="hidden md:flex gap-4 overflow-x-auto">
           <router-link
             v-for="item in navItems"
@@ -15,7 +15,7 @@
           </router-link>
         </div>
 
-        <!-- Mobile Menu Button -->
+       
         <button 
           @click="toggleMenu"
           class="md:hidden text-2xl p-2 hover:bg-gray-200 rounded transition"
@@ -24,7 +24,7 @@
         </button>
       </div>
 
-      <!-- Mobile Navigation -->
+     
       <transition name="slide-down">
         <div v-if="menuOpen" class="md:hidden bg-white border-t border-gray-200">
           <router-link
@@ -44,8 +44,7 @@
 </template>
 
 <script setup>
-// Simple Navbar component
-// - Keeps a small mobile menu state
+
 import { ref } from 'vue'
 import { useRoute } from 'vue-router'
 

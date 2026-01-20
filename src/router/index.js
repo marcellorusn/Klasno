@@ -22,121 +22,174 @@ import YourAccount from '../pages/YourAccount.vue'
 import ComponentShowcase from '../pages/ComponentShowcase.vue'
 import NotFound from '../pages/404.vue'
 
+/**
+ * Vue Router Configuration - 22+ Routes
+ * 
+ * ROUTING EXAMPLES:
+ * - Static routes: /, /about, /contact, etc.
+ * - Dynamic routes with params: /product/:id
+ * - Programmatic navigation: router.push('/path')
+ * - Named routes with RouterLink: <RouterLink :to="{ name: 'Home' }">Home</RouterLink>
+ */
 const routes = [
+  // Main/Public Routes
   {
     path: '/',
     name: 'Home',
     component: Home,
+    meta: { title: 'Home - KLASNO Shop' },
   },
+  
+  // Product Routes (includes dynamic parameter example)
   {
     path: '/products',
     name: 'ProductListing',
     component: ProductListing,
+    meta: { title: 'All Products' },
   },
   {
+    // DYNAMIC ROUTE EXAMPLE: :id parameter used for product details
     path: '/product/:id',
     name: 'ProductDetails',
     component: ProductDetails,
+    meta: { title: 'Product Details' },
   },
+
+  // Shopping Cart Routes
   {
     path: '/cart',
     name: 'Cart',
     component: Cart,
+    meta: { title: 'Shopping Cart' },
   },
   {
     path: '/checkout',
     name: 'Checkout',
     component: Checkout,
+    meta: { title: 'Checkout' },
   },
+
+  // Authentication Routes
   {
     path: '/login',
     name: 'Login',
     component: Login,
+    meta: { title: 'Login' },
   },
   {
     path: '/register',
     name: 'Register',
     component: Register,
-  },
-  {
-    path: '/profile',
-    name: 'Profile',
-    component: Profile,
-  },
-  {
-    path: '/profile/edit',
-    name: 'EditProfile',
-    component: EditProfile,
-  },
-  {
-    path: '/orders',
-    name: 'OrderHistory',
-    component: OrderHistory,
-  },
-  {
-    path: '/category/electronics',
-    name: 'CategoryElectronics',
-    component: CategoryElectronics,
-  },
-  {
-    path: '/category/clothing',
-    name: 'CategoryClothing',
-    component: CategoryClothing,
-  },
-  {
-    path: '/category/books',
-    name: 'CategoryBooks',
-    component: CategoryBooks,
-  },
-  {
-    path: '/category/accessories',
-    name: 'CategoryAccessories',
-    component: CategoryAccessories,
-  },
-  {
-    path: '/wishlist',
-    name: 'Wishlist',
-    component: Wishlist,
-  },
-  {
-    path: '/about',
-    name: 'AboutUs',
-    component: AboutUs,
-  },
-  {
-    path: '/contact',
-    name: 'Contact',
-    component: Contact,
-  },
-  {
-    path: '/feedback',
-    name: 'Feedback',
-    component: Feedback,
-  },
-  {
-    path: '/recently-viewed',
-    name: 'RecentlyViewed',
-    component: RecentlyViewed,
+    meta: { title: 'Register' },
   },
   {
     path: '/forgot-password',
     name: 'ForgotPassword',
     component: ForgotPassword,
+    meta: { title: 'Forgot Password' },
+  },
+
+  // User Account Routes
+  {
+    path: '/profile',
+    name: 'Profile',
+    component: Profile,
+    meta: { title: 'My Profile', requiresAuth: true },
+  },
+  {
+    // PROGRAMMATIC NAVIGATION EXAMPLE: Can be reached via router.push('/profile/edit')
+    path: '/profile/edit',
+    name: 'EditProfile',
+    component: EditProfile,
+    meta: { title: 'Edit Profile', requiresAuth: true },
   },
   {
     path: '/account',
     name: 'YourAccount',
     component: YourAccount,
+    meta: { title: 'Your Account', requiresAuth: true },
   },
+  {
+    path: '/orders',
+    name: 'OrderHistory',
+    component: OrderHistory,
+    meta: { title: 'Order History', requiresAuth: true },
+  },
+
+  // Category Routes (multiple category pages - routing pattern)
+  {
+    path: '/category/electronics',
+    name: 'CategoryElectronics',
+    component: CategoryElectronics,
+    meta: { title: 'Electronics' },
+  },
+  {
+    path: '/category/clothing',
+    name: 'CategoryClothing',
+    component: CategoryClothing,
+    meta: { title: 'Clothing' },
+  },
+  {
+    path: '/category/books',
+    name: 'CategoryBooks',
+    component: CategoryBooks,
+    meta: { title: 'Books' },
+  },
+  {
+    path: '/category/accessories',
+    name: 'CategoryAccessories',
+    component: CategoryAccessories,
+    meta: { title: 'Accessories' },
+  },
+
+  // User Features Routes
+  {
+    path: '/wishlist',
+    name: 'Wishlist',
+    component: Wishlist,
+    meta: { title: 'My Wishlist' },
+  },
+  {
+    path: '/recently-viewed',
+    name: 'RecentlyViewed',
+    component: RecentlyViewed,
+    meta: { title: 'Recently Viewed' },
+  },
+
+  // Company/Info Routes
+  {
+    path: '/about',
+    name: 'AboutUs',
+    component: AboutUs,
+    meta: { title: 'About Us' },
+  },
+  {
+    path: '/contact',
+    name: 'Contact',
+    component: Contact,
+    meta: { title: 'Contact Us' },
+  },
+  {
+    path: '/feedback',
+    name: 'Feedback',
+    component: Feedback,
+    meta: { title: 'Send Feedback' },
+  },
+
+  // Demo/Development Route
   {
     path: '/components',
     name: 'ComponentShowcase',
     component: ComponentShowcase,
+    meta: { title: 'Component Showcase' },
   },
+
+  // 404 Catch-all (must be last)
   {
     path: '/:pathMatch(.*)*',
     name: 'NotFound',
     component: NotFound,
+    meta: { title: 'Page Not Found' },
   },
 ]
 

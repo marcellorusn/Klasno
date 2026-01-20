@@ -26,8 +26,7 @@
 </template>
 
 <script setup>
-// Simple Input component
-// - Uses native input and forwards value via v-model (update:modelValue)
+
 defineProps({
   type: { type: String, default: 'text' },
   placeholder: { type: String, default: '' },

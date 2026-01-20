@@ -10,14 +10,12 @@
     :disabled="disabled"
     @click="$emit('click')"
   >
-    <slot />
+    
   </button>
 </template>
 
 <script setup>
-// Simple Button wrapper
-// Props: variant (style), disabled
-// Emits: native 'click' event
+
 defineProps({
   variant: { type: String, default: 'primary' },
   disabled: { type: Boolean, default: false }

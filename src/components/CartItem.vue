@@ -47,11 +47,7 @@
 </template>
 
 <script setup>
-// Simple CartItem component script
-// - Shows product details inside the cart
-// - Receives props from the parent: id, productName, price, quantity, image
-// - Emits 'remove-item' when the remove button is clicked
-// - Emits 'update:quantity' whenever the quantity changes
+
 import { ref } from 'vue'
 
 const props = defineProps({
@@ -62,11 +58,10 @@ const props = defineProps({
   image: { type: String, default: '' }
 })
 
-// defineEmits declares events this child can send to its parent
+
 const emit = defineEmits(['remove-item', 'update:quantity'])
 
-// Use a local ref for the editable quantity so we can modify it here
-// and notify the parent with the 'update:quantity' event.
+
 const qty = ref(props.quantity)
 
 function incrementQuantity() {
@@ -82,7 +77,7 @@ function decrementQuantity() {
 }
 
 function removeItem() {
-  // Tell the parent which item to remove
+ 
   emit('remove-item', props.id)
 }
 </script>
