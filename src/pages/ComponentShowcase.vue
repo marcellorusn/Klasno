@@ -205,7 +205,7 @@ const inputText = ref('')
  */
 const userGreeting = computed(() => {
   return authStore.isAuthenticated
-    ? `Hello, ${authStore.getUserDisplayName}! 👋`
+    ? `Hello, ${authStore.userName}! 👋`
     : 'Hello, Guest! Welcome 👋'
 })
 
@@ -222,7 +222,7 @@ const counterStatus = computed(() => {
  * COMPUTED 3: Product Stats from store
  */
 const productStatsDisplay = computed(() => {
-  const stats = productStore.getProductStats
+  const stats = productStore.stats
   return `Total: ${stats.total}, Avg: $${stats.avgPrice}, Categories: ${stats.categories.length}`
 })
 
@@ -230,7 +230,7 @@ const productStatsDisplay = computed(() => {
  * COMPUTED 4: Expensive products filter
  */
 const expensiveProductsDisplay = computed(() => {
-  return productStore.getAllProducts
+  return productStore.allProducts
     .filter(p => p.price > 100)
     .map(p => p.name)
     .join(', ')
@@ -238,10 +238,10 @@ const expensiveProductsDisplay = computed(() => {
 
 // Store examples for display
 const productStoreExample = computed(
-  () => `${productStore.getAllProducts.length} products available`
+  () => `${productStore.allProducts.length} products available`
 )
 const authStoreExample = computed(() => `Authenticated: ${authStore.isAuthenticated}`)
-const wishlistStoreExample = computed(() => `${wishlistStore.getWishlistCount} items`)
+const wishlistStoreExample = computed(() => `${wishlistStore.wishlistCount} items`)
 
 // ========== WATCH STATEMENTS (3 EXAMPLES) ==========
 
@@ -303,7 +303,7 @@ const incrementCount = () => {
  * Add to cart (store action example)
  */
 const addToCartExample = () => {
-  const product = productStore.getAllProducts[0]
+  const product = productStore.allProducts[0]
   if (product) {
     cartStore.addToCart(product, 1)
     alert(`Added "${product.name}" to cart!`)

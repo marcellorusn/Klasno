@@ -1,3 +1,15 @@
+<script setup>
+import { useAuthStore } from '../stores/auth'
+import { useCartStore } from '../stores/cart'
+
+const auth = useAuthStore()
+const cartStore = useCartStore()
+
+const handleLogout = () => {
+  auth.logout()
+}
+</script>
+
 <template>
   <header class="bg-blue-600 text-white shadow-lg">
     <div class="container mx-auto px-4 py-4 flex justify-between items-center">
@@ -11,10 +23,8 @@
 
         <router-link to="/cart" class="hover:text-blue-100 transition relative">
           Coș
-          <span
-            v-if="cartStore.itemCount > 0"
-            class="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center"
-          >
+          <span v-if="cartStore.itemCount > 0"
+            class="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
             {{ cartStore.itemCount }}
           </span>
         </router-link>
@@ -26,28 +36,14 @@
           </button>
         </div>
         <div v-else class="flex items-center gap-3">
-          <router-link to="/login" class="hover:text-blue-100 transition"
-            >Autentificare</router-link
-          >
-          <router-link to="/register" class="hover:text-blue-100 transition"
-            >Înregistrare</router-link
-          >
+          <router-link to="/login" class="hover:text-blue-100 transition">Autentificare</router-link>
+          <router-link to="/register" class="hover:text-blue-100 transition">Înregistrare</router-link>
         </div>
       </nav>
     </div>
   </header>
 </template>
 
-<script setup>
-import { useAuthStore } from '../stores/auth'
-import { useCartStore } from '../stores/cart'
 
-const auth = useAuthStore()
-const cartStore = useCartStore()
-
-const handleLogout = () => {
-  auth.logout()
-}
-</script>
 
 <style scoped></style>

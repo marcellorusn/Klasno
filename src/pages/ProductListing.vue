@@ -1,35 +1,3 @@
-<template>
-  <div class="flex gap-6">
-    <Sidebar />
-    <div class="flex-1">
-      <h1 class="text-3xl font-bold mb-6">Toate Produsele</h1>
-
-      <div class="mb-4 flex justify-between items-center">
-        <p class="text-gray-600">{{ products.length }} produse disponibile</p>
-        <select class="px-4 py-2 border border-gray-300 rounded-lg">
-          <option>Sortare: Nou</option>
-          <option>Preț: Crescător</option>
-          <option>Preț: Descrescător</option>
-          <option>Rating: Crescător</option>
-        </select>
-      </div>
-
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        <ProductCard
-          v-for="product in products"
-          :key="product.id"
-          :id="product.id"
-          :title="product.name"
-          :description="product.description"
-          :price="product.price"
-          :rating="product.rating"
-          @add-to-cart="handleAddToCart"
-        />
-      </div>
-    </div>
-  </div>
-</template>
-
 <script setup>
 import { ref } from 'vue'
 import Sidebar from '../components/Sidebar.vue'
@@ -51,5 +19,30 @@ const handleAddToCart = productId => {
   alert(`Produs #${productId} adăugat în coș!`)
 }
 </script>
+
+
+<template>
+  <div class="flex gap-6">
+    <Sidebar />
+    <div class="flex-1">
+      <h1 class="text-3xl font-bold mb-6">Toate Produsele</h1>
+
+      <div class="mb-4 flex justify-between items-center">
+        <p class="text-gray-600">{{ products.length }} produse disponibile</p>
+        <select class="px-4 py-2 border border-gray-300 rounded-lg">
+          <option>Sortare: Nou</option>
+          <option>Preț: Crescător</option>
+          <option>Preț: Descrescător</option>
+          <option>Rating: Crescător</option>
+        </select>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <ProductCard v-for="product in products" :key="product.id" :product="product" @add-to-cart="handleAddToCart" />
+      </div>
+    </div>
+  </div>
+</template>
+
 
 <style scoped></style>

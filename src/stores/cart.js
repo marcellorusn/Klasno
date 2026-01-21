@@ -6,16 +6,19 @@ export const useCartStore = defineStore('cart', {
     items: [],
   }),
 
-  // Getters (separate from computed properties in components)
   getters: {
     // Getter 1: Count items in cart
     itemCount(state) {
       return state.items.length
     },
-    
+
     // Getter 2: Calculate total price
     total(state) {
-      return state.items.reduce((sum, item) => sum + item.price * item.quantity, 0).toFixed(2)
+      let sum = 0
+      for (const item of state.items) {
+        sum += item.price * item.quantity
+      }
+      return sum.toFixed(2)
     },
   },
 

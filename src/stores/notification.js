@@ -1,21 +1,27 @@
 import { defineStore } from 'pinia'
 
-// Store 5: Notification - 2 getters, 2 actions
+// Store 5: Notification
 export const useNotificationStore = defineStore('notification', {
   state: () => ({
     notifications: [],
   }),
 
-  // Getters (separate from computed properties in components)
+  // Getters
   getters: {
     // Getter 1: Get all notifications
     notificationList(state) {
       return state.notifications
     },
-    
+
     // Getter 2: Count unread notifications
     unreadCount(state) {
-      return state.notifications.filter(n => !n.read).length
+      let count = 0
+      for (let i = 0; i < state.notifications.length; i++) {
+        if (!state.notifications[i].read) {
+          count++
+        }
+      }
+      return count
     },
   },
 
@@ -33,10 +39,7 @@ export const useNotificationStore = defineStore('notification', {
 
     // Action 2: Remove notification
     removeNotification(id) {
-      const index = this.notifications.findIndex(n => n.id === id)
-      if (index !== -1) {
-        this.notifications.splice(index, 1)
-      }
+      this.notifications = this.notifications.filter(n => n.id !== id)
     },
   },
 })
