@@ -24,7 +24,7 @@ import NotFound from '../pages/404.vue'
 
 /**
  * Vue Router Configuration - 22+ Routes
- * 
+ *
  * ROUTING EXAMPLES:
  * - Static routes: /, /about, /contact, etc.
  * - Dynamic routes with params: /product/:id
@@ -39,7 +39,7 @@ const routes = [
     component: Home,
     meta: { title: 'Home - KLASNO Shop' },
   },
-  
+
   // Product Routes (includes dynamic parameter example)
   {
     path: '/products',

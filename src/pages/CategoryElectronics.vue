@@ -2,8 +2,8 @@
   <div>
     <h1 class="text-3xl font-bold mb-6">Electronice</h1>
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-      <ProductCard 
-        v-for="product in products" 
+      <ProductCard
+        v-for="product in products"
         :key="product.id"
         :product="product"
         @add-to-cart="handleAddToCart"
@@ -22,13 +22,12 @@ const products = ref([
   { id: 3, name: 'Mouse Wireless', description: 'Mouse performant', price: 249, rating: 4.6 },
   { id: 4, name: 'Tastatura RGB', description: 'Tastatura mecanică', price: 449, rating: 4.9 },
   { id: 5, name: 'Căști Wireless', description: 'Căști ANC', price: 799, rating: 4.8 },
-  { id: 6, name: 'Webcam 4K', description: 'Webcam profesională', price: 399, rating: 4.7 }
+  { id: 6, name: 'Webcam 4K', description: 'Webcam profesională', price: 399, rating: 4.7 },
 ])
 
-const handleAddToCart = (productId) => {
+const handleAddToCart = productId => {
   alert(`Produs #${productId} adăugat în coș!`)
 }
 </script>
 
-<style scoped>
-</style>
+<style scoped></style>

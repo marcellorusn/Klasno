@@ -17,7 +17,7 @@
         'w-full px-4 py-2 border rounded-lg transition',
         'focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent',
         disabled ? 'bg-gray-100 cursor-not-allowed opacity-60' : 'bg-white',
-        error ? 'border-red-500' : 'border-gray-300 hover:border-gray-400'
+        error ? 'border-red-500' : 'border-gray-300 hover:border-gray-400',
       ]"
     />
     <p v-if="error" class="text-red-500 text-sm mt-1">{{ error }}</p>
@@ -26,7 +26,6 @@
 </template>
 
 <script setup>
-
 defineProps({
   type: { type: String, default: 'text' },
   placeholder: { type: String, default: '' },
@@ -35,11 +34,10 @@ defineProps({
   error: { type: String, default: '' },
   hint: { type: String, default: '' },
   required: { type: Boolean, default: false },
-  disabled: { type: Boolean, default: false }
+  disabled: { type: Boolean, default: false },
 })
 
 defineEmits(['update:modelValue', 'blur', 'focus'])
 </script>
 
-<style scoped>
-</style>
+<style scoped></style>

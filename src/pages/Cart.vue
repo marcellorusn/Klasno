@@ -1,3 +1,66 @@
+<script setup>
+import { computed, ref, watch } from 'vue'
+import { useRouter } from 'vue-router'
+import { useCartStore } from '../stores/cart'
+
+const router = useRouter()
+const cartStore = useCartStore()
+
+const couponInput = ref('')
+const couponApplied = ref(false)
+
+const cartItems = computed(() => cartStore.items)
+const itemCount = computed(() => cartStore.getItemCount)
+const cartSubtotal = computed(() => cartStore.getSubtotal)
+
+const averagePrice = computed(() => {
+  if (cartStore.items.length === 0) return '0.00'
+  return (parseFloat(cartStore.getSubtotal) / cartStore.items.length).toFixed(2)
+})
+
+const discountAmount = computed(() => {
+  if (cartStore.couponCode) {
+    return (parseFloat(cartStore.getSubtotal) * 0.1).toFixed(2)
+  }
+  return '0.00'
+})
+
+const cartTotal = computed(() => cartStore.getTotal)
+
+watch(
+  () => cartStore.couponCode,
+  newCode => {
+    couponApplied.value = newCode !== null
+    console.log(`[WATCH] Coupon code changed to: ${newCode}`)
+  }
+)
+
+watch(
+  () => cartStore.items,
+  newItems => {
+    console.log(`[WATCH] Cart items changed. New count: ${newItems.length}`)
+  },
+  { deep: true }
+)
+
+const updateQuantity = (productId, quantity) => {
+  cartStore.updateQuantity(productId, quantity)
+}
+
+const applyCoupon = () => {
+  const success = cartStore.applyCoupon(couponInput.value)
+  if (success) {
+    couponInput.value = ''
+  } else {
+    alert('Invalid coupon code. Try "SAVE10"')
+  }
+}
+
+const continueShopping = () => {
+  router.push({ name: 'ProductListing' })
+}
+</script>
+
 <template>
   <div class="max-w-6xl mx-auto">
     <h1 class="text-3xl font-bold mb-8">Coș de Cumpărături</h1>
@@ -114,194 +177,4 @@
   </div>
 </template>
 
-<script setup>
-import { computed, ref, watch } from 'vue'
-import { useRouter } from 'vue-router'
-import { useCartStore } from '../stores/cart'
-
-const router = useRouter()
-const cartStore = useCartStore()
-
-// Local state
-const couponInput = ref('')
-const couponApplied = ref(false)
-
-// ========== COMPUTED PROPERTIES (6 computed for Cart) ==========
-
-/**
- * COMPUTED 1: Cart items
- * Demonstrates: Direct access to store state
- */
-const cartItems = computed(() => cartStore.items)
-
-/**
- * COMPUTED 2: Item count
- * Demonstrates: Using store getter (getItemCount)
- */
-const itemCount = computed(() => cartStore.getItemCount)
-
-/**
- * COMPUTED 3: Subtotal
- * Demonstrates: Using store getter (getSubtotal)
- */
-const cartSubtotal = computed(() => cartStore.getSubtotal)
-
-/**
- * COMPUTED 4: Average price per item
- * Demonstrates: Calculation based on store data
- */
-const averagePrice = computed(() => {
-  if (cartStore.items.length === 0) return '0.00'
-  return (parseFloat(cartStore.getSubtotal) / cartStore.items.length).toFixed(2)
-})
-
-/**
- * COMPUTED 5: Discount amount
- * Demonstrates: Conditional discount calculation
- */
-const discountAmount = computed(() => {
-  if (cartStore.couponCode) {
-    return (parseFloat(cartStore.getSubtotal) * 0.1).toFixed(2)
-  }
-  return '0.00'
-})
-
-/**
- * COMPUTED 6: Total with discount
- * Demonstrates: Using store getter (getTotal)
- */
-const cartTotal = computed(() => cartStore.getTotal)
-
-// ========== WATCH STATEMENTS (2 watch for Cart) ==========
-
-/**
- * WATCH 1: Monitor coupon code changes
- * Demonstrates: Watching store state for coupon application
- */
-watch(
-  () => cartStore.couponCode,
-  (newCode) => {
-    couponApplied.value = newCode !== null
-    console.log(`[WATCH] Coupon code changed to: ${newCode}`)
-  },
-)
-
-/**
- * WATCH 2: Monitor cart items changes
- * Demonstrates: Deep watching store array
- */
-watch(
-  () => cartStore.items,
-  (newItems) => {
-    console.log(`[WATCH] Cart items changed. New count: ${newItems.length}`)
-  },
-  { deep: true },
-)
-
-// ========== METHODS ==========
-
-/**
- * Update quantity using store action
- * Demonstrates: Using store action (updateQuantity)
- */
-const updateQuantity = (productId, quantity) => {
-  cartStore.updateQuantity(productId, quantity)
-}
-
-/**
- * Apply coupon code
- * Demonstrates: Using store action (applyCoupon)
- */
-const applyCoupon = () => {
-  const success = cartStore.applyCoupon(couponInput.value)
-  if (success) {
-    couponInput.value = ''
-  } else {
-    alert('Invalid coupon code. Try "SAVE10"')
-  }
-}
-
-/**
- * Navigate to products
- * Demonstrates: Programmatic navigation
- */
-const continueShopping = () => {
-  router.push({ name: 'ProductListing' })
-}
-</script>
-
-<style scoped>
-input[type='number'] {
-  -moz-appearance: textfield;
-}
-
-input[type='number']::-webkit-outer-spin-button,
-input[type='number']::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
-}
-</style>
-        <div class="space-y-2 mb-4 text-sm">
-          <div class="flex justify-between">
-            <span>Subtotal:</span>
-            <span>{{ subtotal }} RON</span>
-          </div>
-          <div class="flex justify-between">
-            <span>Livrare:</span>
-            <span>{{ shipping }} RON</span>
-          </div>
-          <div class="flex justify-between">
-            <span>TVA (19%):</span>
-            <span>{{ tax }} RON</span>
-          </div>
-          <div class="border-t pt-2 flex justify-between font-bold text-lg">
-            <span>Total:</span>
-            <span>{{ total }} RON</span>
-          </div>
-        </div>
-        <router-link to="/checkout" class="bg-blue-600 text-white px-4 py-2 rounded-lg w-full block text-center hover:bg-blue-700">
-          Continuă Cumpărarea
-        </router-link>
-      </div>
-    </div>
-
-    <div v-else class="text-center bg-white p-12 rounded-lg shadow-md">
-      <p class="text-gray-600 text-lg mb-4">Coșul tău este gol</p>
-      <router-link to="/products" class="text-blue-600 hover:underline">Explorez Produse</router-link>
-    </div>
-  </div>
-</template>
-
-<script setup>
-// Simple Cart page with local cart items
-// - Uses `ref` for list and `computed` for totals
-import { ref, computed } from 'vue'
-
-const cartItems = ref([
-  { id: 1, name: 'Laptop Dell XPS', price: 3499, quantity: 1 },
-  { id: 2, name: 'Monitor LG 32"', price: 2199, quantity: 2 }
-])
-
-const shipping = 50
-
-const subtotal = computed(() => cartItems.value.reduce((sum, item) => sum + item.price * item.quantity, 0))
-const tax = computed(() => Math.round(subtotal.value * 0.19))
-const total = computed(() => subtotal.value + shipping + tax.value)
-
-function incrementQuantity(id) {
-  const item = cartItems.value.find(i => i.id === id)
-  if (item) item.quantity++
-}
-
-function decrementQuantity(id) {
-  const item = cartItems.value.find(i => i.id === id)
-  if (item && item.quantity > 1) item.quantity--
-}
-
-function removeItem(id) {
-  cartItems.value = cartItems.value.filter(item => item.id !== id)
-}
-</script>
-
-<style scoped>
-</style>
+<style scoped></style>

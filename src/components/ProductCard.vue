@@ -1,12 +1,11 @@
 <template>
-  <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition transform hover:-translate-y-1">
-    <div class="h-48 bg-gray-300 flex items-center justify-center text-gray-500 relative overflow-hidden">
-      <img 
-        v-if="image" 
-        :src="image" 
-        :alt="title"
-        class="w-full h-full object-cover"
-      />
+  <div
+    class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition transform hover:-translate-y-1"
+  >
+    <div
+      class="h-48 bg-gray-300 flex items-center justify-center text-gray-500 relative overflow-hidden"
+    >
+      <img v-if="image" :src="image" :alt="title" class="w-full h-full object-cover" />
       <span v-else>Imagine Produs</span>
     </div>
     <div class="p-4">
@@ -16,12 +15,7 @@
         <span class="text-2xl font-bold text-blue-600">{{ price }} RON</span>
         <RatingStars :rating="rating" @rated="handleRated" />
       </div>
-      <Button 
-        @click="handleAddToCart"
-        class="w-full"
-      >
-        Adaugă în coș
-      </Button>
+      <Button @click="handleAddToCart" class="w-full"> Adaugă în coș </Button>
     </div>
   </div>
 </template>
@@ -37,7 +31,7 @@ const props = defineProps({
   description: { type: String, default: '' },
   price: { type: Number, required: true },
   image: { type: String, default: '' },
-  rating: { type: Number, default: 0 }
+  rating: { type: Number, default: 0 },
 })
 
 // Events: 'add-to-cart' when add button clicked, 'rated' when child rating is used
@@ -54,5 +48,4 @@ function handleRated(stars) {
 }
 </script>
 
-<style scoped>
-</style>
+<style scoped></style>

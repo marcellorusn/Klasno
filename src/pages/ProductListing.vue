@@ -3,7 +3,7 @@
     <Sidebar />
     <div class="flex-1">
       <h1 class="text-3xl font-bold mb-6">Toate Produsele</h1>
-      
+
       <div class="mb-4 flex justify-between items-center">
         <p class="text-gray-600">{{ products.length }} produse disponibile</p>
         <select class="px-4 py-2 border border-gray-300 rounded-lg">
@@ -15,8 +15,8 @@
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        <ProductCard 
-          v-for="product in products" 
+        <ProductCard
+          v-for="product in products"
           :key="product.id"
           :id="product.id"
           :title="product.name"
@@ -44,13 +44,12 @@ const products = ref([
   { id: 6, name: 'Carcasă PC', description: 'Carcasă gaming', price: 599, rating: 4.9 },
   { id: 7, name: 'Tastatura Mecanică', description: 'Tastatura RGB', price: 449, rating: 4.7 },
   { id: 8, name: 'Căști Wireless', description: 'Căști ANC', price: 799, rating: 4.8 },
-  { id: 9, name: 'Încărcător USB-C', description: '100W rapid', price: 149, rating: 4.6 }
+  { id: 9, name: 'Încărcător USB-C', description: '100W rapid', price: 149, rating: 4.6 },
 ])
 
-const handleAddToCart = (productId) => {
+const handleAddToCart = productId => {
   alert(`Produs #${productId} adăugat în coș!`)
 }
 </script>
 
-<style scoped>
-</style>
+<style scoped></style>

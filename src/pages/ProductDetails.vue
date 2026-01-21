@@ -1,32 +1,39 @@
 <template>
   <div v-if="product" class="bg-white p-8 rounded-lg shadow-md">
-    <router-link to="/products" class="text-blue-600 hover:underline mb-4 block">← Înapoi la Produse</router-link>
-    
+    <router-link to="/products" class="text-blue-600 hover:underline mb-4 block"
+      >← Înapoi la Produse</router-link
+    >
+
     <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
       <div class="h-96 bg-gray-300 flex items-center justify-center rounded-lg">
         <span class="text-gray-500 text-xl">Imagine Produs</span>
       </div>
-      
+
       <div>
         <h1 class="text-4xl font-bold mb-2">{{ product.name }}</h1>
         <RatingStars :rating="product.rating" class="mb-4" />
-        
+
         <p class="text-gray-600 mb-4">{{ product.description }}</p>
-        
+
         <div class="mb-6">
           <span class="text-4xl font-bold text-blue-600">{{ product.price }} RON</span>
-          <span class="text-gray-500 line-through ml-4">{{ Math.round(product.price * 1.2) }} RON</span>
+          <span class="text-gray-500 line-through ml-4"
+            >{{ Math.round(product.price * 1.2) }} RON</span
+          >
         </div>
 
         <div class="mb-6">
           <label class="block mb-2">Cantitate:</label>
-          <input v-model.number="quantity" type="number" min="1" class="w-20 px-3 py-2 border border-gray-300 rounded-lg">
+          <input
+            v-model.number="quantity"
+            type="number"
+            min="1"
+            class="w-20 px-3 py-2 border border-gray-300 rounded-lg"
+          />
         </div>
 
         <div class="flex gap-4 mb-6">
-          <Button @click="handleAddToCart" class="flex-1">
-            Adaugă în Coș
-          </Button>
+          <Button @click="handleAddToCart" class="flex-1"> Adaugă în Coș </Button>
           <Button @click="handleAddToWishlist" variant="secondary" class="flex-1">
             ♥ Wishlist
           </Button>
@@ -59,7 +66,9 @@
   </div>
   <div v-else class="text-center py-12">
     <p class="text-gray-500">Produsul nu a fost găsit</p>
-    <router-link to="/products" class="text-blue-600 hover:underline">Înapoi la Produse</router-link>
+    <router-link to="/products" class="text-blue-600 hover:underline"
+      >Înapoi la Produse</router-link
+    >
   </div>
 </template>
 
@@ -76,15 +85,20 @@ const product = ref({
   name: 'Laptop Dell XPS 13',
   description: 'Laptop ultraportabil cu procesor Intel i7, 16GB RAM, 512GB SSD',
   price: 3499,
-  rating: 4.8
+  rating: 4.8,
 })
 
 const quantity = ref(1)
 
 const reviews = ref([
   { id: 1, author: 'Ion M.', rating: 5, text: 'Excelent! Laptop foarte rapid și ușor.' },
-  { id: 2, author: 'Maria T.', rating: 4.5, text: 'Foarte bun, doar bateria ar putea fi mai bună.' },
-  { id: 3, author: 'Andrei K.', rating: 5, text: 'Cel mai bun laptop pe care l-am avut.' }
+  {
+    id: 2,
+    author: 'Maria T.',
+    rating: 4.5,
+    text: 'Foarte bun, doar bateria ar putea fi mai bună.',
+  },
+  { id: 3, author: 'Andrei K.', rating: 5, text: 'Cel mai bun laptop pe care l-am avut.' },
 ])
 
 function handleAddToCart() {
@@ -96,5 +110,4 @@ function handleAddToWishlist() {
 }
 </script>
 
-<style scoped>
-</style>
+<style scoped></style>

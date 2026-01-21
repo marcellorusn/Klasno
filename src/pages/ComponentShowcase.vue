@@ -12,7 +12,9 @@
         <router-link :to="{ name: 'ProductListing' }" class="btn btn-primary">Products</router-link>
         <router-link :to="{ name: 'Cart' }" class="btn btn-primary">Cart</router-link>
         <router-link :to="{ name: 'Wishlist' }" class="btn btn-primary">Wishlist</router-link>
-        <router-link :to="{ name: 'CategoryElectronics' }" class="btn btn-primary">Electronics</router-link>
+        <router-link :to="{ name: 'CategoryElectronics' }" class="btn btn-primary"
+          >Electronics</router-link
+        >
         <router-link :to="{ name: 'Login' }" class="btn btn-primary">Login</router-link>
         <router-link :to="{ name: 'Profile' }" class="btn btn-primary">Profile</router-link>
         <router-link :to="{ name: 'AboutUs' }" class="btn btn-primary">About</router-link>
@@ -94,7 +96,9 @@
         <!-- Store 1: Product Store -->
         <div class="p-4 border rounded">
           <h3 class="font-bold mb-2">1. Product Store</h3>
-          <p class="text-sm text-gray-600 mb-2">Getters: getAllProducts, getProductsByCategory, getProductStats</p>
+          <p class="text-sm text-gray-600 mb-2">
+            Getters: getAllProducts, getProductsByCategory, getProductStats
+          </p>
           <p class="text-sm text-gray-600 mb-2">Actions: setCategory, addProduct, getProductById</p>
           <p class="text-xs font-mono">{{ productStoreExample }}</p>
         </div>
@@ -127,7 +131,9 @@
         <div class="p-4 border rounded col-span-full">
           <h3 class="font-bold mb-2">5. Notification Store</h3>
           <p class="text-sm text-gray-600 mb-2">Getters: getNotifications, getUnreadCount</p>
-          <p class="text-sm text-gray-600 mb-2">Actions: addNotification, removeNotification, toggleTheme</p>
+          <p class="text-sm text-gray-600 mb-2">
+            Actions: addNotification, removeNotification, toggleTheme
+          </p>
           <button @click="addNotificationExample" class="btn btn-secondary">
             Add Notification (demo)
           </button>
@@ -164,8 +170,8 @@
     <section class="bg-white p-8 rounded-lg shadow">
       <h2 class="text-2xl font-bold mb-4">🚀 GitHub Pages Deployment</h2>
       <div class="bg-gray-50 p-4 rounded font-mono text-sm space-y-2">
-        <p>npm run build:gh-pages  # Build for GitHub Pages with base=/klasno-shop/</p>
-        <p>npm run deploy         # Deploy to gh-pages branch</p>
+        <p>npm run build:gh-pages # Build for GitHub Pages with base=/klasno-shop/</p>
+        <p>npm run deploy # Deploy to gh-pages branch</p>
         <p class="text-gray-600">Then enable GitHub Pages in repository settings</p>
       </div>
     </section>
@@ -231,7 +237,9 @@ const expensiveProductsDisplay = computed(() => {
 })
 
 // Store examples for display
-const productStoreExample = computed(() => `${productStore.getAllProducts.length} products available`)
+const productStoreExample = computed(
+  () => `${productStore.getAllProducts.length} products available`
+)
 const authStoreExample = computed(() => `Authenticated: ${authStore.isAuthenticated}`)
 const wishlistStoreExample = computed(() => `${wishlistStore.getWishlistCount} items`)
 
@@ -244,7 +252,7 @@ watch(
   () => count.value,
   (newVal, oldVal) => {
     console.log(`[WATCH 1] Count changed from ${oldVal} to ${newVal}`)
-  },
+  }
 )
 
 /**
@@ -253,10 +261,10 @@ watch(
 let watchStatusMsg = 'Waiting for input...'
 watch(
   () => inputText.value,
-  (newVal) => {
+  newVal => {
     console.log(`[WATCH 2] Input changed: "${newVal}"`)
     watchStatusMsg = `Last update: ${new Date().toLocaleTimeString()}`
-  },
+  }
 )
 
 /**
@@ -264,9 +272,9 @@ watch(
  */
 watch(
   () => counterStatus.value,
-  (newStatus) => {
+  newStatus => {
     console.log(`[WATCH 3] Counter status changed: ${newStatus}`)
-  },
+  }
 )
 
 // Current watch status
@@ -312,18 +320,34 @@ const addNotificationExample = () => {
 
 <style scoped>
 .btn {
-  @apply px-3 py-2 rounded text-sm font-medium cursor-pointer transition;
+  padding: 0.75rem;
+  border-radius: 0.375rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s;
 }
 
 .btn-primary {
-  @apply bg-blue-600 text-white hover:bg-blue-700;
+  background-color: #2563eb;
+  color: white;
+}
+
+.btn-primary:hover {
+  background-color: #1d4ed8;
 }
 
 .btn-secondary {
-  @apply bg-gray-600 text-white hover:bg-gray-700;
+  background-color: #4b5563;
+  color: white;
+}
+
+.btn-secondary:hover {
+  background-color: #374151;
 }
 
 .btn-small {
-  @apply px-2 py-1 text-xs;
+  padding: 0.5rem 0.5rem;
+  font-size: 0.75rem;
 }
 </style>

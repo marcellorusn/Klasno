@@ -36,7 +36,7 @@ export const useCartStore = defineStore('cart', () => {
   }
 
   // Action 2: Remove item from cart
-  const removeFromCart = (productId) => {
+  const removeFromCart = productId => {
     const index = items.value.findIndex(item => item.id === productId)
     if (index !== -1) {
       items.value.splice(index, 1)
@@ -55,7 +55,7 @@ export const useCartStore = defineStore('cart', () => {
   }
 
   // Action 4: Apply coupon code
-  const applyCoupon = (code) => {
+  const applyCoupon = code => {
     if (code === 'SAVE10') {
       couponCode.value = code
       return true

@@ -37,9 +37,7 @@
           </label>
         </div>
 
-        <Button @click="handleSubmit" class="w-full text-lg py-3">
-          Plasează Comanda
-        </Button>
+        <Button @click="handleSubmit" class="w-full text-lg py-3"> Plasează Comanda </Button>
       </form>
     </div>
 
@@ -80,7 +78,7 @@ const form = ref({
   city: '',
   postalCode: '',
   paymentMethod: 'card',
-  termsAccepted: false
+  termsAccepted: false,
 })
 
 const handleSubmit = () => {
@@ -92,5 +90,4 @@ const handleSubmit = () => {
 }
 </script>
 
-<style scoped>
-</style>
+<style scoped></style>

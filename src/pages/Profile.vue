@@ -2,7 +2,9 @@
   <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
     <aside class="bg-white p-6 rounded-lg shadow-md">
       <div class="text-center mb-6">
-        <div class="w-20 h-20 bg-gray-300 rounded-full mx-auto mb-3 flex items-center justify-center">
+        <div
+          class="w-20 h-20 bg-gray-300 rounded-full mx-auto mb-3 flex items-center justify-center"
+        >
           <span class="text-3xl">👤</span>
         </div>
         <h2 class="font-bold">{{ userName }}</h2>
@@ -21,7 +23,10 @@
         <router-link to="/wishlist" class="block px-3 py-2 hover:bg-gray-100 rounded-lg">
           Wishlist
         </router-link>
-        <button @click="handleLogout" class="w-full text-left px-3 py-2 text-red-600 hover:bg-red-50 rounded-lg">
+        <button
+          @click="handleLogout"
+          class="w-full text-left px-3 py-2 text-red-600 hover:bg-red-50 rounded-lg"
+        >
           Deconectare
         </button>
       </nav>
@@ -58,9 +63,7 @@
           <p>București, 010101</p>
           <p>România</p>
         </div>
-        <Button @click="editAddress" variant="secondary">
-          Modifică Adresa
-        </Button>
+        <Button @click="editAddress" variant="secondary"> Modifică Adresa </Button>
       </div>
     </div>
   </div>
@@ -76,7 +79,9 @@ const auth = useAuth()
 const router = useRouter()
 
 const userName = computed(() => auth.state.user?.name || 'Utilizator')
-const userEmail = computed(() => auth.state.user?.email || auth.state.user?.name || 'noreply@example.com')
+const userEmail = computed(
+  () => auth.state.user?.email || auth.state.user?.name || 'noreply@example.com'
+)
 
 const editAddress = () => {
   alert('Modifică adresa')
@@ -88,5 +93,4 @@ const handleLogout = () => {
 }
 </script>
 
-<style scoped>
-</style>
+<style scoped></style>

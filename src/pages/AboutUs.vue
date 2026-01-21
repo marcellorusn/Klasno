@@ -1,6 +1,8 @@
 <template>
   <div class="space-y-8">
-    <section class="bg-gradient-to-r from-blue-600 to-blue-800 text-white py-12 px-8 rounded-lg text-center">
+    <section
+      class="bg-gradient-to-r from-blue-600 to-blue-800 text-white py-12 px-8 rounded-lg text-center"
+    >
       <h1 class="text-4xl font-bold mb-4">Despre Klasno</h1>
       <p class="text-xl">Lider în comerțul electronic cu produse de calitate</p>
     </section>
@@ -8,7 +10,8 @@
     <section class="bg-white p-8 rounded-lg shadow-md">
       <h2 class="text-3xl font-bold mb-4">Povestea Noastră</h2>
       <p class="text-gray-700 mb-4">
-        Klasno a fost fondată în 2020 cu o viziune simplă: să aducă produse de calitate direct la ușa clienților noștri.
+        Klasno a fost fondată în 2020 cu o viziune simplă: să aducă produse de calitate direct la
+        ușa clienților noștri.
       </p>
       <p class="text-gray-700">
         După 5 ani, suntem mândri să servim peste 100,000 de clienți mulțumiți din toată țara.
@@ -45,8 +48,6 @@
   </div>
 </template>
 
-<script setup>
-</script>
+<script setup></script>
 
-<style scoped>
-</style>
+<style scoped></style>

@@ -2,7 +2,6 @@
   <nav class="bg-gray-100 border-b border-gray-200 sticky top-0 z-40">
     <div class="container mx-auto px-4">
       <div class="flex justify-between items-center py-3">
-        
         <div class="hidden md:flex gap-4 overflow-x-auto">
           <router-link
             v-for="item in navItems"
@@ -15,8 +14,7 @@
           </router-link>
         </div>
 
-       
-        <button 
+        <button
           @click="toggleMenu"
           class="md:hidden text-2xl p-2 hover:bg-gray-200 rounded transition"
         >
@@ -24,7 +22,6 @@
         </button>
       </div>
 
-     
       <transition name="slide-down">
         <div v-if="menuOpen" class="md:hidden bg-white border-t border-gray-200">
           <router-link
@@ -44,7 +41,6 @@
 </template>
 
 <script setup>
-
 import { ref } from 'vue'
 import { useRoute } from 'vue-router'
 
@@ -57,7 +53,7 @@ const navItems = [
   { path: '/category/electronics', label: 'Electronice' },
   { path: '/category/clothing', label: 'Îmbrăcăminte' },
   { path: '/category/books', label: 'Cărți' },
-  { path: '/category/accessories', label: 'Accesorii' }
+  { path: '/category/accessories', label: 'Accesorii' },
 ]
 
 const emit = defineEmits(['toggle-menu'])
@@ -75,7 +71,9 @@ function toggleMenu() {
 <style scoped>
 .slide-down-enter-active,
 .slide-down-leave-active {
-  transition: max-height 0.3s ease, opacity 0.3s ease;
+  transition:
+    max-height 0.3s ease,
+    opacity 0.3s ease;
 }
 
 .slide-down-enter-from,

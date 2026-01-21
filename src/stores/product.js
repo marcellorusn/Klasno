@@ -25,7 +25,7 @@ export const useProductStore = defineStore('product', () => {
   const getAllProducts = computed(() => products.value)
 
   // Getter 2: Filtered by category
-  const getProductsByCategory = computed(() => (category) => {
+  const getProductsByCategory = computed(() => category => {
     return category ? products.value.filter(p => p.category === category) : products.value
   })
 
@@ -33,17 +33,19 @@ export const useProductStore = defineStore('product', () => {
   const getProductStats = computed(() => ({
     total: products.value.length,
     categories: [...new Set(products.value.map(p => p.category))],
-    avgPrice: (products.value.reduce((sum, p) => sum + p.price, 0) / products.value.length).toFixed(2),
+    avgPrice: (products.value.reduce((sum, p) => sum + p.price, 0) / products.value.length).toFixed(
+      2
+    ),
   }))
 
   // Action 1: Set selected category filter
-  const setCategory = (category) => {
+  const setCategory = category => {
     selectedCategory.value = category
     filteredProducts.value = getProductsByCategory.value(category)
   }
 
   // Action 2: Add new product (demo)
-  const addProduct = (product) => {
+  const addProduct = product => {
     const newProduct = {
       ...product,
       id: Math.max(...products.value.map(p => p.id)) + 1,
@@ -53,7 +55,7 @@ export const useProductStore = defineStore('product', () => {
   }
 
   // Action 3: Get product by ID
-  const getProductById = (id) => {
+  const getProductById = id => {
     return products.value.find(p => p.id === id)
   }
 

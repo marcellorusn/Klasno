@@ -1,15 +1,13 @@
 <template>
   <div class="flex gap-2">
-    <input 
-      v-model="searchQuery" 
+    <input
+      v-model="searchQuery"
       @keyup.enter="handleSearch"
-      type="text" 
-      placeholder="Caută produse..." 
+      type="text"
+      placeholder="Caută produse..."
       class="flex-1 px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
     />
-    <Button @click="handleSearch" variant="primary">
-      🔍
-    </Button>
+    <Button @click="handleSearch" variant="primary"> 🔍 </Button>
   </div>
 </template>
 
@@ -26,5 +24,4 @@ function handleSearch() {
 }
 </script>
 
-<style scoped>
-</style>
+<style scoped></style>

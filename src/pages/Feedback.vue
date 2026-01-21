@@ -2,13 +2,13 @@
   <div class="max-w-2xl mx-auto bg-white p-8 rounded-lg shadow-md">
     <h1 class="text-3xl font-bold mb-2">Spune-ne Opinia Ta</h1>
     <p class="text-gray-600 mb-6">Feedback-ul tău ne ajută să ne îmbunătățim serviciile</p>
-    
+
     <form class="space-y-4" @submit.prevent="handleSubmit">
       <div>
         <label class="block mb-2 font-semibold">Rata Experiența:</label>
         <div class="flex gap-2">
-          <button 
-            v-for="star in 5" 
+          <button
+            v-for="star in 5"
             :key="star"
             type="button"
             @click="form.rating = star"
@@ -33,16 +33,14 @@
         </select>
       </div>
 
-      <textarea 
-        v-model="form.message" 
-        placeholder="Spune-ne ce crezi..." 
+      <textarea
+        v-model="form.message"
+        placeholder="Spune-ne ce crezi..."
         class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
         rows="6"
       ></textarea>
 
-      <Button @click="handleSubmit" class="w-full">
-        Trimite Feedback
-      </Button>
+      <Button @click="handleSubmit" class="w-full"> Trimite Feedback </Button>
     </form>
   </div>
 </template>
@@ -57,7 +55,7 @@ const form = ref({
   name: '',
   email: '',
   category: 'Calitate Produs',
-  message: ''
+  message: '',
 })
 
 const handleSubmit = () => {
@@ -65,5 +63,4 @@ const handleSubmit = () => {
 }
 </script>
 
-<style scoped>
-</style>
+<style scoped></style>

@@ -4,7 +4,7 @@
     <section class="bg-gradient-to-r from-blue-500 to-cyan-500 text-white p-12 rounded-lg">
       <h1 class="text-4xl font-bold mb-4">{{ heroTitle }}</h1>
       <p class="text-xl mb-4">{{ heroMessage }}</p>
-      
+
       <!-- Display user greeting using getter from auth store -->
       <div class="text-lg">
         <p>Hello, {{ userDisplayName }}! 👋</p>
@@ -75,10 +75,7 @@
     <!-- Wishlist Preview -->
     <section v-if="wishlistCount > 0" class="bg-white p-8 rounded-lg shadow">
       <h2 class="text-2xl font-bold mb-4">Wishlist ({{ wishlistCount }} items)</h2>
-      <router-link
-        :to="{ name: 'Wishlist' }"
-        class="text-blue-600 hover:underline"
-      >
+      <router-link :to="{ name: 'Wishlist' }" class="text-blue-600 hover:underline">
         View Wishlist →
       </router-link>
     </section>
@@ -190,7 +187,7 @@ watch(
   () => visitCount.value,
   (newValue, oldValue) => {
     console.log(`[WATCH 1] Visit count changed from ${oldValue} to ${newValue}`)
-  },
+  }
 )
 
 /**
@@ -200,10 +197,10 @@ watch(
  */
 watch(
   () => cartStore.items,
-  (newItems) => {
+  newItems => {
     console.log(`[WATCH 2] Cart updated with ${newItems.length} items`)
   },
-  { deep: true },
+  { deep: true }
 )
 
 /**
@@ -212,9 +209,9 @@ watch(
  */
 watch(
   () => authStore.isAuthenticated,
-  (isAuth) => {
+  isAuth => {
     console.log(`[WATCH 3] User authentication status: ${isAuth}`)
-  },
+  }
 )
 
 // ========== METHODS ==========
@@ -223,7 +220,7 @@ watch(
  * Handle adding product to cart
  * Demonstrates: Using store action (cartStore.addToCart)
  */
-const handleAddToCart = (product) => {
+const handleAddToCart = product => {
   cartStore.addToCart(product, 1)
   visitCount.value++
   console.log(`Added ${product.name} to cart`)
@@ -244,23 +241,4 @@ visitCount.value = 1
 
 <style scoped>
 /* Component-specific styles */
-</style>
-
-<script setup>
-import { ref } from 'vue'
-import ProductCard from '../components/ProductCard.vue'
-
-const trendingProducts = ref([
-  { id: 1, name: 'Laptop ProBook', description: 'Laptop performant', price: 2999, rating: 4.5 },
-  { id: 2, name: 'Monitor 4K', description: 'Ecran de calitate', price: 1299, rating: 4.8 },
-  { id: 3, name: 'Cărți de Programare', description: 'Bundle educativ', price: 149, rating: 4.7 },
-  { id: 4, name: 'Tricou Premium', description: 'Tricou 100% bumbac', price: 79, rating: 4.6 }
-])
-
-const handleAddToCart = (productId) => {
-  alert(`Produs #${productId} adăugat în coș!`)
-}
-</script>
-
-<style scoped>
 </style>

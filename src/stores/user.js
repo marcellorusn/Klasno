@@ -16,7 +16,9 @@ export const useAuthStore = defineStore('auth', () => {
   // Getter 2: User display name
   const getUserDisplayName = computed(() => {
     if (!user.value) return 'Guest'
-    return user.value.firstName ? `${user.value.firstName} ${user.value.lastName}` : user.value.email
+    return user.value.firstName
+      ? `${user.value.firstName} ${user.value.lastName}`
+      : user.value.email
   })
 
   // Action 1: Login user
@@ -44,7 +46,7 @@ export const useAuthStore = defineStore('auth', () => {
   }
 
   // Action 3: Update user profile
-  const updateProfile = (updates) => {
+  const updateProfile = updates => {
     if (user.value) {
       user.value = { ...user.value, ...updates }
       return true

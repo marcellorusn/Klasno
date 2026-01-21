@@ -2,20 +2,18 @@
   <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
     <div class="space-y-6">
       <h1 class="text-3xl font-bold">Contactează-ne</h1>
-      
+
       <form class="space-y-4" @submit.prevent="handleSubmit">
         <Input v-model="form.name" placeholder="Nume" />
         <Input v-model="form.email" type="email" placeholder="Email" />
         <Input v-model="form.phone" placeholder="Telefon (opțional)" />
-        <textarea 
-          v-model="form.message" 
-          placeholder="Mesajul tău..." 
+        <textarea
+          v-model="form.message"
+          placeholder="Mesajul tău..."
           class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
           rows="5"
         ></textarea>
-        <Button @click="handleSubmit" class="w-full">
-          Trimite Mesaj
-        </Button>
+        <Button @click="handleSubmit" class="w-full"> Trimite Mesaj </Button>
       </form>
     </div>
 
@@ -33,11 +31,11 @@
           </div>
           <div>
             <p class="font-bold">Adresă Birou:</p>
-            <p>Strada Principale 123<br>București, 010101</p>
+            <p>Strada Principale 123<br />București, 010101</p>
           </div>
           <div>
             <p class="font-bold">Ore Program:</p>
-            <p>Luni - Vineri: 9:00 - 18:00<br>Sâmbătă: 10:00 - 14:00<br>Duminică: Închis</p>
+            <p>Luni - Vineri: 9:00 - 18:00<br />Sâmbătă: 10:00 - 14:00<br />Duminică: Închis</p>
           </div>
         </div>
       </div>
@@ -64,7 +62,7 @@ const form = ref({
   name: '',
   email: '',
   phone: '',
-  message: ''
+  message: '',
 })
 
 const handleSubmit = () => {
@@ -72,5 +70,4 @@ const handleSubmit = () => {
 }
 </script>
 
-<style scoped>
-</style>
+<style scoped></style>

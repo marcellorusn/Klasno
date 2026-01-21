@@ -1,38 +1,21 @@
 <template>
   <div class="max-w-md mx-auto bg-white p-8 rounded-lg shadow-md">
     <h1 class="text-3xl font-bold mb-6 text-center">Înregistrare</h1>
-    
+
     <form class="space-y-4" @submit.prevent="handleRegister">
-      <Input 
-        v-model="form.fullName" 
-        placeholder="Nume Complet" 
-      />
-      <Input 
-        v-model="form.email" 
-        type="email" 
-        placeholder="Email" 
-      />
-      <Input 
-        v-model="form.password" 
-        type="password" 
-        placeholder="Parolă" 
-      />
-      <Input 
-        v-model="form.confirmPassword" 
-        type="password" 
-        placeholder="Confirmă Parolă" 
-      />
+      <Input v-model="form.fullName" placeholder="Nume Complet" />
+      <Input v-model="form.email" type="email" placeholder="Email" />
+      <Input v-model="form.password" type="password" placeholder="Parolă" />
+      <Input v-model="form.confirmPassword" type="password" placeholder="Confirmă Parolă" />
       <label class="flex gap-2">
         <input v-model="form.termsAccepted" type="checkbox" />
         <span class="text-sm">Accept Termenii și Condițiile</span>
       </label>
-      <Button class="w-full" @click="handleRegister">
-        Înregistrare
-      </Button>
+      <Button class="w-full" @click="handleRegister"> Înregistrare </Button>
     </form>
 
     <p class="text-center mt-4 text-gray-600">
-      Ai deja cont? 
+      Ai deja cont?
       <router-link to="/login" class="text-blue-600 hover:underline">Autentifică-te</router-link>
     </p>
   </div>
@@ -50,7 +33,7 @@ const form = ref({
   email: '',
   password: '',
   confirmPassword: '',
-  termsAccepted: false
+  termsAccepted: false,
 })
 
 const router = useRouter()
@@ -67,5 +50,4 @@ const handleRegister = () => {
 }
 </script>
 
-<style scoped>
-</style>
+<style scoped></style>
