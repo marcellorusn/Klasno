@@ -1,65 +1,42 @@
 import { defineStore } from 'pinia'
-import { ref, computed } from 'vue'
 
-/**
- * UI/Notifications Store - Manages notifications and UI state
- * Demonstrates: 2 getters, 3 actions
- */
-export const useNotificationStore = defineStore('notification', () => {
-  // State
-  const notifications = ref([])
-  const theme = ref('light')
+// Store 5: Notification - 2 getters, 2 actions
+export const useNotificationStore = defineStore('notification', {
+  state: () => ({
+    notifications: [],
+  }),
 
-  // Getter 1: Latest notifications
-  const getNotifications = computed(() => notifications.value)
+  // Getters (separate from computed properties in components)
+  getters: {
+    // Getter 1: Get all notifications
+    notificationList(state) {
+      return state.notifications
+    },
+    
+    // Getter 2: Count unread notifications
+    unreadCount(state) {
+      return state.notifications.filter(n => !n.read).length
+    },
+  },
 
-  // Getter 2: Unread count
-  const getUnreadCount = computed(() => {
-    return notifications.value.filter(n => !n.read).length
-  })
+  // Actions
+  actions: {
+    // Action 1: Add notification
+    addNotification(message) {
+      const notification = {
+        id: Date.now(),
+        message,
+        read: false,
+      }
+      this.notifications.push(notification)
+    },
 
-  // Action 1: Add notification
-  const addNotification = (message, type = 'info', duration = 3000) => {
-    const id = Date.now()
-    const notification = {
-      id,
-      message,
-      type, // 'success', 'error', 'info', 'warning'
-      read: false,
-    }
-    notifications.value.push(notification)
-
-    // Auto-remove after duration
-    if (duration) {
-      setTimeout(() => {
-        removeNotification(id)
-      }, duration)
-    }
-
-    return id
-  }
-
-  // Action 2: Remove notification
-  const removeNotification = id => {
-    const index = notifications.value.findIndex(n => n.id === id)
-    if (index !== -1) {
-      notifications.value.splice(index, 1)
-    }
-  }
-
-  // Action 3: Toggle theme
-  const toggleTheme = () => {
-    theme.value = theme.value === 'light' ? 'dark' : 'light'
-    return theme.value
-  }
-
-  return {
-    notifications,
-    theme,
-    getNotifications,
-    getUnreadCount,
-    addNotification,
-    removeNotification,
-    toggleTheme,
-  }
+    // Action 2: Remove notification
+    removeNotification(id) {
+      const index = this.notifications.findIndex(n => n.id === id)
+      if (index !== -1) {
+        this.notifications.splice(index, 1)
+      }
+    },
+  },
 })

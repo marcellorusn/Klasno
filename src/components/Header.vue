@@ -6,23 +6,21 @@
         <router-link to="/" class="hover:text-blue-100 transition">Acasă</router-link>
         <router-link to="/products" class="hover:text-blue-100 transition">Produse</router-link>
         <router-link to="/about" class="hover:text-blue-100 transition">Despre</router-link>
-        <router-link to="/contact" class="hover:text-blue-100 transition">Contact</router-link>
 
         <div class="flex-1"></div>
 
         <router-link to="/cart" class="hover:text-blue-100 transition relative">
           Coș
           <span
-            v-if="cartCount > 0"
+            v-if="cartStore.itemCount > 0"
             class="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center"
           >
-            {{ cartCount }}
+            {{ cartStore.itemCount }}
           </span>
         </router-link>
 
-        <div v-if="auth.state.loggedIn" class="flex items-center gap-3">
+        <div v-if="auth.isAuthenticated" class="flex items-center gap-3">
           <router-link to="/profile" class="hover:text-blue-100 transition">Profil</router-link>
-          <router-link to="/orders" class="hover:text-blue-100 transition">Comenzi</router-link>
           <button @click="handleLogout" class="text-sm bg-white text-blue-600 px-3 py-1 rounded">
             Ieșire
           </button>
@@ -41,13 +39,13 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
-import useAuth from '../stores/auth'
+import { useAuthStore } from '../stores/auth'
+import { useCartStore } from '../stores/cart'
 
-const cartCount = ref(3)
-const auth = useAuth()
+const auth = useAuthStore()
+const cartStore = useCartStore()
 
-function handleLogout() {
+const handleLogout = () => {
   auth.logout()
 }
 </script>

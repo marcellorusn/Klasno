@@ -1,6 +1,7 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+
+
+
 
 /*
 If Tailwind styles still don't appear after starting the dev server, try:

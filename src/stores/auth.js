@@ -1,24 +1,34 @@
-import { reactive } from 'vue'
+import { defineStore } from 'pinia'
 
-// Minimal, local auth store used for demo/navigation purposes.
-// In a real app replace with proper auth (JWT/OAuth/session).
-const state = reactive({
-  loggedIn: false,
-  user: null,
+// Store 1: Auth - 2 getters, 2 actions
+export const useAuthStore = defineStore('auth', {
+  state: () => ({
+    user: null,
+  }),
+
+  // Getters (separate from computed properties in components)
+  getters: {
+    // Getter 1: Check if user is logged in
+    isAuthenticated(state) {
+      return !!state.user
+    },
+    
+    // Getter 2: Get user name
+    userName(state) {
+      return state.user?.email || 'Guest'
+    },
+  },
+
+  // Actions
+  actions: {
+    // Action 1: Login
+    login(email) {
+      this.user = { email }
+    },
+
+    // Action 2: Logout
+    logout() {
+      this.user = null
+    },
+  },
 })
-
-export function useAuth() {
-  const login = (user = { name: 'User' }) => {
-    state.loggedIn = true
-    state.user = user
-  }
-
-  const logout = () => {
-    state.loggedIn = false
-    state.user = null
-  }
-
-  return { state, login, logout }
-}
-
-export default useAuth

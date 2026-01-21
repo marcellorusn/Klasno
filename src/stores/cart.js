@@ -1,77 +1,42 @@
 import { defineStore } from 'pinia'
-import { ref, computed } from 'vue'
 
-/**
- * Cart Store - Manages shopping cart
- * Demonstrates: 3 getters, 4 actions
- */
-export const useCartStore = defineStore('cart', () => {
-  // State
-  const items = ref([])
-  const couponCode = ref(null)
+// Store 2: Cart - 2 getters, 2 actions
+export const useCartStore = defineStore('cart', {
+  state: () => ({
+    items: [],
+  }),
 
-  // Getter 1: Cart items count
-  const getItemCount = computed(() => items.value.length)
+  // Getters (separate from computed properties in components)
+  getters: {
+    // Getter 1: Count items in cart
+    itemCount(state) {
+      return state.items.length
+    },
+    
+    // Getter 2: Calculate total price
+    total(state) {
+      return state.items.reduce((sum, item) => sum + item.price * item.quantity, 0).toFixed(2)
+    },
+  },
 
-  // Getter 2: Cart subtotal
-  const getSubtotal = computed(() => {
-    return items.value.reduce((total, item) => total + item.price * item.quantity, 0).toFixed(2)
-  })
-
-  // Getter 3: Cart with discount (10% if coupon applied)
-  const getTotal = computed(() => {
-    const subtotal = parseFloat(getSubtotal.value)
-    const discount = couponCode.value ? subtotal * 0.1 : 0
-    return (subtotal - discount).toFixed(2)
-  })
-
-  // Action 1: Add item to cart
-  const addToCart = (product, quantity = 1) => {
-    const existing = items.value.find(item => item.id === product.id)
-    if (existing) {
-      existing.quantity += quantity
-    } else {
-      items.value.push({ ...product, quantity })
-    }
-  }
-
-  // Action 2: Remove item from cart
-  const removeFromCart = productId => {
-    const index = items.value.findIndex(item => item.id === productId)
-    if (index !== -1) {
-      items.value.splice(index, 1)
-    }
-  }
-
-  // Action 3: Update item quantity
-  const updateQuantity = (productId, quantity) => {
-    const item = items.value.find(i => i.id === productId)
-    if (item) {
-      item.quantity = quantity
-      if (item.quantity <= 0) {
-        removeFromCart(productId)
+  // Actions
+  actions: {
+    // Action 1: Add product to cart
+    addToCart(product, quantity = 1) {
+      const existing = this.items.find(item => item.id === product.id)
+      if (existing) {
+        existing.quantity += quantity
+      } else {
+        this.items.push({ ...product, quantity })
       }
-    }
-  }
+    },
 
-  // Action 4: Apply coupon code
-  const applyCoupon = code => {
-    if (code === 'SAVE10') {
-      couponCode.value = code
-      return true
-    }
-    return false
-  }
-
-  return {
-    items,
-    couponCode,
-    getItemCount,
-    getSubtotal,
-    getTotal,
-    addToCart,
-    removeFromCart,
-    updateQuantity,
-    applyCoupon,
-  }
+    // Action 2: Remove product from cart
+    removeFromCart(productId) {
+      const index = this.items.findIndex(item => item.id === productId)
+      if (index !== -1) {
+        this.items.splice(index, 1)
+      }
+    },
+  },
 })

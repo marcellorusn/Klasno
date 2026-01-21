@@ -7,18 +7,12 @@
         >
           <span class="text-3xl">👤</span>
         </div>
-        <h2 class="font-bold">{{ userName }}</h2>
-        <p class="text-sm text-gray-600">{{ userEmail }}</p>
+        <h2 class="font-bold">{{ auth.userName }}</h2>
+        <p class="text-sm text-gray-600">{{ auth.user?.email || 'noreply@example.com' }}</p>
       </div>
       <nav class="space-y-2">
         <router-link to="/profile" class="block px-3 py-2 bg-blue-600 text-white rounded-lg">
           Profil
-        </router-link>
-        <router-link to="/profile/edit" class="block px-3 py-2 hover:bg-gray-100 rounded-lg">
-          Modifică Profil
-        </router-link>
-        <router-link to="/orders" class="block px-3 py-2 hover:bg-gray-100 rounded-lg">
-          Comenzi
         </router-link>
         <router-link to="/wishlist" class="block px-3 py-2 hover:bg-gray-100 rounded-lg">
           Wishlist
@@ -38,11 +32,11 @@
         <div class="grid grid-cols-2 gap-4 text-sm">
           <div>
             <p class="text-gray-600">Nume:</p>
-            <p class="font-bold">{{ userName }}</p>
+            <p class="font-bold">{{ auth.userName }}</p>
           </div>
           <div>
             <p class="text-gray-600">Email:</p>
-            <p class="font-bold">{{ userEmail }}</p>
+            <p class="font-bold">{{ auth.user?.email || 'noreply@example.com' }}</p>
           </div>
           <div>
             <p class="text-gray-600">Telefon:</p>
@@ -71,17 +65,11 @@
 
 <script setup>
 import Button from '../components/Button.vue'
-import { computed } from 'vue'
 import { useRouter } from 'vue-router'
-import useAuth from '../stores/auth'
+import { useAuthStore } from '../stores/auth'
 
-const auth = useAuth()
 const router = useRouter()
-
-const userName = computed(() => auth.state.user?.name || 'Utilizator')
-const userEmail = computed(
-  () => auth.state.user?.email || auth.state.user?.name || 'noreply@example.com'
-)
+const auth = useAuthStore()
 
 const editAddress = () => {
   alert('Modifică adresa')

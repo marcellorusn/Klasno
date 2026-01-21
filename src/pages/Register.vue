@@ -26,7 +26,7 @@ import { ref } from 'vue'
 import { useRouter } from 'vue-router'
 import Input from '../components/Input.vue'
 import Button from '../components/Button.vue'
-import useAuth from '../stores/auth'
+import { useAuthStore } from '../stores/auth'
 
 const form = ref({
   fullName: '',
@@ -37,15 +37,14 @@ const form = ref({
 })
 
 const router = useRouter()
-const auth = useAuth()
+const auth = useAuthStore()
 
 const handleRegister = () => {
   if (form.value.password !== form.value.confirmPassword) {
     alert('Parolele nu se potrivesc!')
     return
   }
-  // Simple demo registration: mark logged in and go to profile
-  auth.login({ name: form.value.fullName || form.value.email })
+  auth.login(form.value.email)
   router.push('/profile')
 }
 </script>
