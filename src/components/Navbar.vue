@@ -13,7 +13,6 @@
             {{ item.label }}
           </router-link>
         </div>
-
         <button
           @click="toggleMenu"
           class="md:hidden text-2xl p-2 hover:bg-gray-200 rounded transition"
@@ -21,7 +20,6 @@
           {{ menuOpen ? '✕' : '☰' }}
         </button>
       </div>
-
       <transition name="slide-down">
         <div v-if="menuOpen" class="md:hidden bg-white border-t border-gray-200">
           <router-link
@@ -56,24 +54,17 @@ const navItems = [
   { path: '/category/accessories', label: 'Accesorii' },
 ]
 
-const emit = defineEmits(['toggle-menu'])
+const isActive = (path) => route.path === path
 
-function isActive(path) {
-  return route.path === path
-}
-
-function toggleMenu() {
+const toggleMenu = () => {
   menuOpen.value = !menuOpen.value
-  emit('toggle-menu', menuOpen.value)
 }
 </script>
 
 <style scoped>
 .slide-down-enter-active,
 .slide-down-leave-active {
-  transition:
-    max-height 0.3s ease,
-    opacity 0.3s ease;
+  transition: max-height 0.3s ease, opacity 0.3s ease;
 }
 
 .slide-down-enter-from,

@@ -2,7 +2,6 @@
   <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
     <div class="lg:col-span-2">
       <h1 class="text-3xl font-bold mb-6">Finalizare Comandă</h1>
-
       <form class="space-y-6" @submit.prevent="handleSubmit">
         <div class="bg-white p-6 rounded-lg shadow-md">
           <h2 class="font-bold text-lg mb-4">Date Livrare</h2>
@@ -13,7 +12,6 @@
           <Input v-model="form.city" placeholder="Oraș" class="mb-4" />
           <Input v-model="form.postalCode" placeholder="Cod Poștal" />
         </div>
-
         <div class="bg-white p-6 rounded-lg shadow-md">
           <h2 class="font-bold text-lg mb-4">Metodă Plată</h2>
           <label class="flex gap-2 mb-3">
@@ -29,18 +27,15 @@
             <span>Plată la Livrare</span>
           </label>
         </div>
-
         <div class="bg-white p-6 rounded-lg shadow-md">
           <label class="flex gap-2">
             <input v-model="form.termsAccepted" type="checkbox" />
             <span>Accept Termenii și Condițiile</span>
           </label>
         </div>
-
-        <Button @click="handleSubmit" class="w-full text-lg py-3"> Plasează Comanda </Button>
+        <Button @click="handleSubmit" class="w-full text-lg py-3">Plasează Comanda</Button>
       </form>
     </div>
-
     <div class="bg-white p-6 rounded-lg shadow-md h-fit">
       <h2 class="font-bold text-lg mb-4">Rezumat</h2>
       <div class="space-y-2 text-sm mb-4">
@@ -89,5 +84,3 @@ const handleSubmit = () => {
   alert('Comandă plasată cu succes!')
 }
 </script>
-
-<style scoped></style>

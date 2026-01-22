@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia'
 
-// Store 3: Product - 2 getters, 2 actions
+// Store 3: Product
 export const useProductStore = defineStore('product', {
   state: () => ({
     products: [

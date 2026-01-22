@@ -1,3 +1,11 @@
+<script setup>
+import Notifications from './components/Notifications.vue'
+import Header from './components/Header.vue'
+import Navbar from './components/Navbar.vue'
+import Footer from './components/Footer.vue'
+import './style.css'
+</script>
+
 <template>
   <div class="flex flex-col min-h-screen bg-gray-50">
     <Header />
@@ -6,15 +14,6 @@
       <router-view />
     </main>
     <Footer />
+    <Notifications />
   </div>
 </template>
-
-<script setup>
-import Header from './components/Header.vue'
-import Navbar from './components/Navbar.vue'
-import Footer from './components/Footer.vue'
-</script>
-
-<style scoped>
- 
-</style>

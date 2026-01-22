@@ -29,7 +29,6 @@
 </template>
 
 <script setup>
-// Simple Modal component
 import Button from './Button.vue'
 
 const props = defineProps({

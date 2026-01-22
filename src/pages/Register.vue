@@ -48,5 +48,3 @@ const handleRegister = () => {
   router.push('/profile')
 }
 </script>
-
-<style scoped></style>

@@ -14,8 +14,7 @@
       @blur="$emit('blur')"
       @focus="$emit('focus')"
       :class="[
-        'w-full px-4 py-2 border rounded-lg transition',
-        'focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent',
+        'w-full px-4 py-2 border rounded-lg transition focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent',
         disabled ? 'bg-gray-100 cursor-not-allowed opacity-60' : 'bg-white',
         error ? 'border-red-500' : 'border-gray-300 hover:border-gray-400',
       ]"
@@ -39,5 +38,3 @@ defineProps({
 
 defineEmits(['update:modelValue', 'blur', 'focus'])
 </script>
-
-<style scoped></style>

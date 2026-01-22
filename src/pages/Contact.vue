@@ -69,5 +69,3 @@ const handleSubmit = () => {
   alert(`Mulțumim! Vom răspunde la ${form.value.email} în curând.`)
 }
 </script>
-
-<style scoped></style>

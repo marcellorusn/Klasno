@@ -18,18 +18,13 @@
 </template>
 
 <script setup>
-// Simple interactive stars component
-// Props: rating (number)
-// Emits: 'rated' with the chosen star count
 import { ref } from 'vue'
 
 const props = defineProps({ rating: { type: Number, default: 0 } })
 const emit = defineEmits(['rated'])
 const hoverRating = ref(0)
 
-function handleRate(stars) {
+const handleRate = (stars) => {
   emit('rated', stars)
 }
 </script>
-
-<style scoped></style>

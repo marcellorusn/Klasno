@@ -32,5 +32,3 @@ const handleSubmit = () => {
   alert(`Link de resetare trimis la ${form.value.email}`)
 }
 </script>
-
-<style scoped></style>

@@ -36,5 +36,3 @@ const handleSubmit = () => {
   alert('Profil actualizat cu succes!')
 }
 </script>
-
-<style scoped></style>

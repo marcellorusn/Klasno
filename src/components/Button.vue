@@ -9,7 +9,7 @@
     ]"
     :disabled="disabled"
     @click="$emit('click')"
-  ></button>
+  />
 </template>
 
 <script setup>
@@ -19,5 +19,3 @@ defineProps({
 })
 defineEmits(['click'])
 </script>
-
-<style scoped></style>

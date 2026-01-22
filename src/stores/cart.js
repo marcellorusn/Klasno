@@ -12,7 +12,7 @@ export const useCartStore = defineStore('cart', {
       return state.items.length
     },
 
-    // Getter 2: Calculate total price
+    // Getter 2: pret total
     total(state) {
       let sum = 0
       for (const item of state.items) {

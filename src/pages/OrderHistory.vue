@@ -76,5 +76,3 @@ const viewOrder = orderId => {
   alert(`Detaliile comenzii #${orderId}`)
 }
 </script>
-
-<style scoped></style>

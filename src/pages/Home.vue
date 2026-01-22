@@ -4,12 +4,14 @@ import { useRouter } from 'vue-router'
 import { useProductStore } from '../stores/product'
 import { useCartStore } from '../stores/cart'
 import { useAuthStore } from '../stores/auth'
+import { useNotificationStore } from '../stores/notification'
 import ProductCard from '../components/ProductCard.vue'
 
 const router = useRouter()
 const productStore = useProductStore()
 const cartStore = useCartStore()
 const authStore = useAuthStore()
+const notificationStore = useNotificationStore()
 
 const visitCount = ref(0)
 
@@ -30,21 +32,14 @@ const featuredProducts = computed(() => productStore.allProducts.slice(0, 4))
 
 // Watcher 1: Watch visit count
 watch(() => visitCount.value, (newVal) => {
-  console.log(`Visit count: ${newVal}`)
-})
-
-// Watcher 2: Watch cart items
-watch(() => cartStore.items, (newItems) => {
-  console.log(`Cart has ${newItems.length} items`)
-}, { deep: true })
-
-// Watcher 3: Watch auth status
-watch(() => authStore.isAuthenticated, (isAuth) => {
-  console.log(`User authenticated: ${isAuth}`)
+  if (newVal > 0) {
+    notificationStore.addNotification(`Ati vizualizat ${newVal} produs(e)`)
+  }
 })
 
 const handleAddToCart = (product) => {
   cartStore.addToCart(product, 1)
+  notificationStore.addNotification(`${product.name} a fost adăugat în coș! 🛒`)
   visitCount.value++
 }
 
@@ -99,7 +94,3 @@ visitCount.value = 1
 </template>
 
 
-
-<style scoped>
-/* Optional: add small card spacing fix */
-</style>

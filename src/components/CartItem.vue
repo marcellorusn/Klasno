@@ -30,7 +30,6 @@ function removeItem() {
 }
 </script>
 
-
 <template>
   <div class="flex gap-4 p-4 bg-white rounded-lg shadow-sm border border-gray-200 hover:shadow-md transition">
     <div class="h-24 w-24 bg-gray-300 rounded-lg flex items-center justify-center flex-shrink-0">
@@ -66,6 +65,3 @@ function removeItem() {
     </button>
   </div>
 </template>
-
-
-<style scoped></style>

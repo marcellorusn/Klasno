@@ -62,5 +62,3 @@ const handleSubmit = () => {
   alert(`Mulțumim pentru feedback! Rating: ${form.value.rating}/5`)
 }
 </script>
-
-<style scoped></style>

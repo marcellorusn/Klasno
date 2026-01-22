@@ -15,6 +15,11 @@
 <script setup>
 import { ref } from 'vue'
 import ProductCard from '../components/ProductCard.vue'
+import { useCartStore } from '../stores/cart'
+import { useNotificationStore } from '../stores/notification'
+
+const cartStore = useCartStore()
+const notificationStore = useNotificationStore()
 
 const products = ref([
   { id: 1, name: 'Tricou Premium', description: '100% bumbac', price: 89, rating: 4.6 },
@@ -25,9 +30,8 @@ const products = ref([
   { id: 6, name: 'Șapcă Baseball', description: 'Șapcă sport', price: 59, rating: 4.4 },
 ])
 
-const handleAddToCart = productId => {
-  alert(`Produs #${productId} adăugat în coș!`)
+const handleAddToCart = (product) => {
+  cartStore.addToCart(product, 1)
+  notificationStore.addNotification(`${product.name} a fost adăugat în coș! 🛒`)
 }
 </script>
-
-<style scoped></style>

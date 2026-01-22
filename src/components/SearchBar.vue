@@ -12,7 +12,6 @@
 </template>
 
 <script setup>
-// Simple SearchBar: emits 'search' with the current query
 import { ref } from 'vue'
 import Button from './Button.vue'
 
@@ -23,5 +22,3 @@ function handleSearch() {
   emit('search', searchQuery.value)
 }
 </script>
-
-<style scoped></style>

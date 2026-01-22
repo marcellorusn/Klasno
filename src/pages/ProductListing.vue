@@ -2,6 +2,11 @@
 import { ref } from 'vue'
 import Sidebar from '../components/Sidebar.vue'
 import ProductCard from '../components/ProductCard.vue'
+import { useCartStore } from '../stores/cart'
+import { useNotificationStore } from '../stores/notification'
+
+const cartStore = useCartStore()
+const notificationStore = useNotificationStore()
 
 const products = ref([
   { id: 1, name: 'Laptop Dell XPS', description: 'Laptop performant', price: 3499, rating: 4.8 },
@@ -15,18 +20,17 @@ const products = ref([
   { id: 9, name: 'Încărcător USB-C', description: '100W rapid', price: 149, rating: 4.6 },
 ])
 
-const handleAddToCart = productId => {
-  alert(`Produs #${productId} adăugat în coș!`)
+const handleAddToCart = (product) => {
+  cartStore.addToCart(product, 1)
+  notificationStore.addNotification(`${product.name} a fost adăugat în coș! 🛒`)
 }
 </script>
-
 
 <template>
   <div class="flex gap-6">
     <Sidebar />
     <div class="flex-1">
       <h1 class="text-3xl font-bold mb-6">Toate Produsele</h1>
-
       <div class="mb-4 flex justify-between items-center">
         <p class="text-gray-600">{{ products.length }} produse disponibile</p>
         <select class="px-4 py-2 border border-gray-300 rounded-lg">
@@ -36,13 +40,9 @@ const handleAddToCart = productId => {
           <option>Rating: Crescător</option>
         </select>
       </div>
-
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         <ProductCard v-for="product in products" :key="product.id" :product="product" @add-to-cart="handleAddToCart" />
       </div>
     </div>
   </div>
 </template>
-
-
-<style scoped></style>
