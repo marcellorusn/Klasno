@@ -15,25 +15,27 @@ const notificationStore = useNotificationStore()
 
 const visitCount = ref(0)
 
-// Computed 1: Product count
 const productCount = computed(() => productStore.productCount)
 
-// Computed 2: Cart item count
 const cartItemCount = computed(() => cartStore.itemCount)
 
-// Computed 3: Cart total
 const cartTotal = computed(() => cartStore.total)
 
-// Computed 4: User name
 const userName = computed(() => authStore.userName)
 
-// Computed 5: Featured products
 const featuredProducts = computed(() => productStore.allProducts.slice(0, 4))
 
-// Watcher 1: Watch visit count
+
 watch(() => visitCount.value, (newVal) => {
   if (newVal > 0) {
     notificationStore.addNotification(`Ati vizualizat ${newVal} produs(e)`)
+  }
+})
+
+
+watch(() => cartStore.itemCount, (newCount) => {
+  if (newCount > 0) {
+    notificationStore.addNotification(`Cos: ${newCount} produs(e)`)
   }
 })
 
